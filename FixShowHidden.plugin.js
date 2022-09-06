@@ -1,10 +1,10 @@
 /**
  * @name FixShowHidden
  * @author DevilBro, Shinaii
- * @version 3.2.5
+ * @version 3.2.6
  * @description Displays all hidden Channels, which can't be accessed due to Role Restrictions, this won't allow you to read them (impossible) fixed by Shinaii
- * @source https://github.com/Shinaii/Fix-ShowHiddenChannels
- * @updateUrl https://raw.githubusercontent.com/Shinaii/Fix-ShowHiddenChannels/main/FixShowHidden.plugin.js
+ * @source https://github.com/Shinaii/BD-ChannelFix
+ * @updateUrl https://raw.githubusercontent.com/Shinaii/BD-ChannelFix/main/FixShowHidden.plugin.js
  */
 
  module.exports = (_ => {

@@ -1,7 +1,7 @@
 {
 	"PluginNameMap": {},
 	"PluginUrlMap": {
-		"BDFDB": "https://raw.githubusercontent.com/Shinaii/Fix-ShowHiddenChannels/main/FixBDFDB.plugin.js"
+		"BDFDB": "https://raw.githubusercontent.com/Shinaii/BD-ChannelFix/main/FixBDFDB.plugin.js"
 	},
 	"LibraryRequires": ["electron", "fs", "path", "process", "request"],
 	"DiscordObjects": {

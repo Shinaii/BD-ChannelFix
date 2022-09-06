@@ -1,4 +1,4 @@
-@import url(https://raw.githubusercontent.com/Shinaii/Fix-ShowHiddenChannels/main/_res/SupporterBadge.css);
+@import url(https://raw.githubusercontent.com/Shinaii/BD-ChannelFix/main/_res/SupporterBadge.css);
 
 :root {
 	--bdfdb-blurple: var(--brand-experiment, hsl(235, calc(var(--saturation-factor, 1) * 85.6%), 64.7%));

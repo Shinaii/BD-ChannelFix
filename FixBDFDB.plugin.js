@@ -2,10 +2,10 @@
  * @name Fix_BDFDB
  * @author DevilBro, Shinaii
  * @authorId 260458346115497984
- * @version 3.0.5
+ * @version 3.0.6
  * @description Required Library for ShowHiddenChannels plugin
- * @source https://github.com/Shinaii/Fix-ShowHiddenChannels
- * @updateUrl https://raw.githubusercontent.com/Shinaii/Fix-ShowHiddenChannels/main/FixBDFDB.plugin.js
+ * @source https://github.com/Shinaii/BD-ChannelFix
+ * @updateUrl https://raw.githubusercontent.com/Shinaii/BD-ChannelFix/main/FixBDFDB.plugin.js
  */
 
  module.exports = (_ => {
