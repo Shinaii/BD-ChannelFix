@@ -3,7 +3,7 @@
  * @author DevilBro, Shinaii
  * @version 3.2.5
  * @description Displays all hidden Channels, which can't be accessed due to Role Restrictions, this won't allow you to read them (impossible) fixed by Shinaii
- * @source https://raw.githubusercontent.com/Shinaii/Fix-ShowHiddenChannels/main/
+ * @source https://github.com/Shinaii/Fix-ShowHiddenChannels
  * @updateUrl https://raw.githubusercontent.com/Shinaii/Fix-ShowHiddenChannels/main/FixShowHidden.plugin.js
  */
 

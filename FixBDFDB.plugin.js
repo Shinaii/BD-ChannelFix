@@ -2,9 +2,9 @@
  * @name Fix_BDFDB
  * @author DevilBro, Shinaii
  * @authorId 260458346115497984
- * @version 3.0.2
+ * @version 3.0.5
  * @description Required Library for ShowHiddenChannels plugin
- * @source https://raw.githubusercontent.com/Shinaii/Fix-ShowHiddenChannels/main/
+ * @source https://github.com/Shinaii/Fix-ShowHiddenChannels
  * @updateUrl https://raw.githubusercontent.com/Shinaii/Fix-ShowHiddenChannels/main/FixBDFDB.plugin.js
  */
 
@@ -50,6 +50,9 @@
 							hasNote: data => data.disabled && data.value
 						},
 						showLibraryDevtools: {
+							value: false
+						},
+						showSupportBadges: {
 							value: false
 						},
 						useChromium: {
@@ -824,8 +827,8 @@
 						let newName = (body.match(/"name"\s*:\s*"([^"]+)"/) || [])[1] || pluginName;
 						let newVersion = (body.match(/@version ([0-9]+\.[0-9]+\.[0-9]+)|['"]([0-9]+\.[0-9]+\.[0-9]+)['"]/i) || []).filter(n => n)[1];
 						let oldVersion = PluginStores.updateData.plugins[url].version;
-						let fileName = pluginName == "Fix_BDFDB" ? "1BDFDB" : pluginName;
-						let newFileName = newName == "Fix_BDFDB" ? "1BDFDB" : newName;
+						let fileName = pluginName == "Fix_BDFDB" ? "FixBDFDB" : pluginName;
+						let newFileName = newName == "Fix_BDFDB" ? "FixBDFDB" : newName;
 						Internal.LibraryRequires.fs.writeFile(Internal.LibraryRequires.path.join(Fix_BDFDB.BDUtils.getPluginsFolder(), newFileName + ".plugin.js"), body, _ => {
 							if (PluginStores.updateData.plugins[url]) PluginStores.updateData.plugins[url].version = newVersion;
 							if (fileName != newFileName) {
@@ -990,7 +993,7 @@
 			Fix_BDFDB.DataUtils.save = function (data, plugin, key, id) {
 				plugin = plugin == Fix_BDFDB && Internal || plugin;
 				let pluginName = typeof plugin === "string" ? plugin : plugin.name;
-				let fileName = pluginName == "Fix_BDFDB" ? "1BDFDB" : pluginName;
+				let fileName = pluginName == "Fix_BDFDB" ? "FixBDFDB" : pluginName;
 				let configPath = path.join(Fix_BDFDB.BDUtils.getPluginsFolder(), fileName + ".config.json");
 				
 				let config = Cache.data[pluginName] !== undefined ? Cache.data[pluginName] : (Internal.readConfig(plugin, configPath) || {});
@@ -1020,7 +1023,7 @@
 			Fix_BDFDB.DataUtils.load = function (plugin, key, id) {
 				plugin = plugin == Fix_BDFDB && Internal || plugin;
 				let pluginName = typeof plugin === "string" ? plugin : plugin.name;
-				let fileName = pluginName == "Fix_BDFDB" ? "1BDFDB" : pluginName;
+				let fileName = pluginName == "Fix_BDFDB" ? "FixBDFDB" : pluginName;
 				let configPath = path.join(Fix_BDFDB.BDUtils.getPluginsFolder(), fileName + ".config.json");
 				
 				let config = Cache.data[pluginName] !== undefined ? Cache.data[pluginName] : (Internal.readConfig(plugin, configPath) || {});
@@ -1037,7 +1040,7 @@
 			Fix_BDFDB.DataUtils.remove = function (plugin, key, id) {
 				plugin = plugin == Fix_BDFDB && Internal || plugin;
 				let pluginName = typeof plugin === "string" ? plugin : plugin.name;
-				let fileName = pluginName == "Fix_BDFDB" ? "1BDFDB" : pluginName;
+				let fileName = pluginName == "Fix_BDFDB" ? "FixBDFDB" : pluginName;
 				let configPath = path.join(Fix_BDFDB.BDUtils.getPluginsFolder(), fileName + ".config.json");
 				
 				let config = Cache.data[pluginName] !== undefined ? Cache.data[pluginName] : (Internal.readConfig(plugin, configPath) || {});
@@ -1084,8 +1087,8 @@
 				else return newC[key] === undefined || newC[key][id] === undefined ? null : newC[key][id];
 			};
 			
-			const cssFileName = "1BDFDB.raw.css";
-			const dataFileName = "1BDFDB.data.json";
+			const cssFileName = "FixBDFDB.raw.css";
+			const dataFileName = "FixBDFDB.data.json";
 			const cssFilePath = path.join(Fix_BDFDB.BDUtils.getPluginsFolder(), cssFileName);
 			const dataFilePath = path.join(Fix_BDFDB.BDUtils.getPluginsFolder(), dataFileName);
 			let InternalData, libHashes = {}, oldLibHashes = Fix_BDFDB.DataUtils.load(Fix_BDFDB, "hashes"), libraryCSS;
