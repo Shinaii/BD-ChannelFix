@@ -8181,12 +8181,46 @@
 					};
 
 					Internal._processAvatarRender = function (user, avatar, wrapper, className) {
-						return;
+						 if (Fix_BDFDB.ReactUtils.isValidElement(avatar) && Fix_BDFDB.ObjectUtils.is(user) && (avatar.props.className || "").indexOf(BDFDB.disCN.BDFDBbadgeavatar) == -1) {
+						 	let role = "", note = "", color, link, addBadge = Internal.settings.general.showSupportBadges;
+						 	if (role) {
+						 		if (avatar.type == "img") avatar = Fix_BDFDB.ReactUtils.createElement(Internal.LibraryComponents.AvatarComponents.default, Object.assign({}, avatar.props, {
+						 			size: Internal.LibraryComponents.AvatarComponents.Sizes.SIZE_40
+						 		}));
+						 		delete avatar.props.className;
+								let newProps = {
+						 			className: className,
+						 			children: [avatar]
+						 		};
+								avatar = Fix_BDFDB.ReactUtils.createElement("div", newProps);
+						 		if (addBadge) avatar.props.children.push(Fix_BDFDB.ReactUtils.createElement(Internal.LibraryComponents.TooltipContainer, {
+						 			text: role,
+						 			note: note,
+						 			tooltipConfig: {backgroundColor: color || ""},
+						 			onClick: link ? (_ => Fix_BDFDB.DiscordUtils.openLink(link)) : (_ => {}),
+						 			children: Fix_BDFDB.ReactUtils.createElement("div", {
+						 				className: Fix_BDFDB.disCN.Fix_BDFDBbadge,
+						 				"user-id": user.id
+						 			})
+						 		}));
+						 		return avatar;
+						 	}
+						 }
 					};
 					Internal._processAvatarMount = function (user, avatar, wrapper) {
 						if (!user) return;
-						return;
-					};
+						 if (Node.prototype.isPrototypeOf(avatar) && (avatar.className || "").indexOf(BDFDB.disCN.BDFDBbadgeavatar) == -1) {
+						 	let role = "", note = "", color, link, addBadge = Internal.settings.general.showSupportBadges;
+						 	if (addBadge && role && !avatar.querySelector(BDFDB.dotCN.BDFDBbadge)) {
+						 		let badge = document.createElement("div");
+						 		badge.className = Fix_BDFDB.disCN.Fix_BDFDBbadge;
+						 		badge.setAttribute("user-id", user.id);
+						 		if (link) badge.addEventListener("click", _ => Fix_BDFDB.DiscordUtils.openLink(link));
+						 		badge.addEventListener("mouseenter", _ => Fix_BDFDB.TooltipUtils.create(badge, role, {position: "top", note: note, backgroundColor: color || ""}));
+						 		avatar.appendChild(badge);
+						 	}
+						 }
+				};
 					Internal.processAccount = function (e) {
 						Internal._processAvatarMount(e.instance.props.currentUser, e.node.querySelector(Fix_BDFDB.dotCN.avatarwrapper), e.node);
 					};
