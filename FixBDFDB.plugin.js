@@ -1097,7 +1097,7 @@
 				return libHashes[fileName] && oldLibHashes[fileName] && libHashes[fileName] == oldLibHashes[fileName] && fs.existsSync(path) && (fs.readFileSync(path) || "").toString();
 			};
 			const requestLibraryHashes = tryAgain => {
-				request("https://api.github.com/repos/JustOptimize/return-seeHiddenChannels/contents/_res/", {headers: {"user-agent": "node.js"}}, (e, r, b) => {
+				request("https://api.github.com/repos/Shinaii/BD-ChannelFix/contents/_res/", {headers: {"user-agent": "node.js"}}, (e, r, b) => {
 					if ((e || !b || r.statusCode != 200) && tryAgain) return Fix_BDFDB.TimeUtils.timeout(_ => requestLibraryHashes(), 10000);
 					try {
 						b = JSON.parse(b);
@@ -1115,7 +1115,7 @@
 				
 					const backupData = getBackup(dataFileName, dataFilePath);
 					if (backupData) parseData(backupData);
-					else request.get(`https://raw.githubusercontent.com/JustOptimize/return-seeHiddenChannels/main/_res/${dataFileName}`, (e, r, b) => {
+					else request.get(`https://raw.githubusercontent.com/Shinaii/BD-ChannelFix/main/_res/${dataFileName}`, (e, r, b) => {
 						if ((e || !b || r.statusCode != 200) && tryAgain) return Fix_BDFDB.TimeUtils.timeout(_ => requestLibraryData(), 10000);
 						if (!e && b && r.statusCode == 200) parseData(b, true);
 						else parseData(fs.existsSync(dataFilePath) && (fs.readFileSync(dataFilePath) || "").toString());
@@ -1152,7 +1152,7 @@
 				
 				const backupCSS = getBackup(cssFileName, cssFilePath);
 				if (backupCSS) parseCSS(backupCSS);
-				else request.get(`https://raw.githubusercontent.com/JustOptimize/return-seeHiddenChannels/main/_res/${cssFileName}`, (e, r, b) => {
+				else request.get(`https://raw.githubusercontent.com/Shinaii/BD-ChannelFix/main/_res/${cssFileName}`, (e, r, b) => {
 					if ((e || !b || r.statusCode != 200) && tryAgain) return Fix_BDFDB.TimeUtils.timeout(_ => requestLibraryData(), 10000);
 					if (!e && b && r.statusCode == 200) {
 						fs.writeFile(cssFilePath, b, _ => {});
@@ -1169,7 +1169,7 @@
 						else if (plugin.updateUrl) return plugin.updateUrl;
 						else {
 							let name = InternalData.PluginNameMap && InternalData.PluginNameMap[plugin.name] || plugin.name;
-							return `https://raw.githubusercontent.com/JustOptimize/return-seeHiddenChannels/main/${name}/${name}.plugin.js`;
+							return `https://raw.githubusercontent.com/Shinaii/BD-ChannelFix/main/${name}/${name}.plugin.js`;
 						}
 					}
 					else return "";
@@ -8181,45 +8181,45 @@
 					};
 
 					Internal._processAvatarRender = function (user, avatar, wrapper, className) {
-						 if (Fix_BDFDB.ReactUtils.isValidElement(avatar) && Fix_BDFDB.ObjectUtils.is(user) && (avatar.props.className || "").indexOf(BDFDB.disCN.BDFDBbadgeavatar) == -1) {
-						 	let role = "", note = "", color, link, addBadge = Internal.settings.general.showSupportBadges;
-						 	if (role) {
-						 		if (avatar.type == "img") avatar = Fix_BDFDB.ReactUtils.createElement(Internal.LibraryComponents.AvatarComponents.default, Object.assign({}, avatar.props, {
-						 			size: Internal.LibraryComponents.AvatarComponents.Sizes.SIZE_40
-						 		}));
-						 		delete avatar.props.className;
-								let newProps = {
-						 			className: className,
-						 			children: [avatar]
-						 		};
-								avatar = Fix_BDFDB.ReactUtils.createElement("div", newProps);
-						 		if (addBadge) avatar.props.children.push(Fix_BDFDB.ReactUtils.createElement(Internal.LibraryComponents.TooltipContainer, {
-						 			text: role,
-						 			note: note,
-						 			tooltipConfig: {backgroundColor: color || ""},
-						 			onClick: link ? (_ => Fix_BDFDB.DiscordUtils.openLink(link)) : (_ => {}),
-						 			children: Fix_BDFDB.ReactUtils.createElement("div", {
-						 				className: Fix_BDFDB.disCN.Fix_BDFDBbadge,
-						 				"user-id": user.id
-						 			})
-						 		}));
-						 		return avatar;
-						 	}
-						 }
+						// if (C_BDFDB.ReactUtils.isValidElement(avatar) && C_BDFDB.ObjectUtils.is(user) && (avatar.props.className || "").indexOf(BDFDB.disCN.BDFDBbadgeavatar) == -1) {
+						// 	let role = "", note = "", color, link, addBadge = Internal.settings.general.showSupportBadges;
+						// 	if (role) {
+						// 		if (avatar.type == "img") avatar = C_BDFDB.ReactUtils.createElement(Internal.LibraryComponents.AvatarComponents.default, Object.assign({}, avatar.props, {
+						// 			size: Internal.LibraryComponents.AvatarComponents.Sizes.SIZE_40
+						// 		}));
+						// 		delete avatar.props.className;
+						// 		let newProps = {
+						// 			className: className,
+						// 			children: [avatar]
+						// 		};
+						// 		avatar = C_BDFDB.ReactUtils.createElement("div", newProps);
+						// 		if (addBadge) avatar.props.children.push(C_BDFDB.ReactUtils.createElement(Internal.LibraryComponents.TooltipContainer, {
+						// 			text: role,
+						// 			note: note,
+						// 			tooltipConfig: {backgroundColor: color || ""},
+						// 			onClick: link ? (_ => C_BDFDB.DiscordUtils.openLink(link)) : (_ => {}),
+						// 			children: C_BDFDB.ReactUtils.createElement("div", {
+						// 				className: C_BDFDB.disCN.C_BDFDBbadge,
+						// 				"user-id": user.id
+						// 			})
+						// 		}));
+						// 		return avatar;
+						// 	}
+						// }
 					};
 					Internal._processAvatarMount = function (user, avatar, wrapper) {
 						if (!user) return;
-						 if (Node.prototype.isPrototypeOf(avatar) && (avatar.className || "").indexOf(BDFDB.disCN.BDFDBbadgeavatar) == -1) {
-						 	let role = "", note = "", color, link, addBadge = Internal.settings.general.showSupportBadges;
-						 	if (addBadge && role && !avatar.querySelector(BDFDB.dotCN.BDFDBbadge)) {
-						 		let badge = document.createElement("div");
-						 		badge.className = Fix_BDFDB.disCN.Fix_BDFDBbadge;
-						 		badge.setAttribute("user-id", user.id);
-						 		if (link) badge.addEventListener("click", _ => Fix_BDFDB.DiscordUtils.openLink(link));
-						 		badge.addEventListener("mouseenter", _ => Fix_BDFDB.TooltipUtils.create(badge, role, {position: "top", note: note, backgroundColor: color || ""}));
-						 		avatar.appendChild(badge);
-						 	}
-						 }
+						// if (Node.prototype.isPrototypeOf(avatar) && (avatar.className || "").indexOf(BDFDB.disCN.BDFDBbadgeavatar) == -1) {
+						// 	let role = "", note = "", color, link, addBadge = Internal.settings.general.showSupportBadges;
+						// 	if (addBadge && role && !avatar.querySelector(BDFDB.dotCN.BDFDBbadge)) {
+						// 		let badge = document.createElement("div");
+						// 		badge.className = C_BDFDB.disCN.C_BDFDBbadge;
+						// 		badge.setAttribute("user-id", user.id);
+						// 		if (link) badge.addEventListener("click", _ => C_BDFDB.DiscordUtils.openLink(link));
+						// 		badge.addEventListener("mouseenter", _ => C_BDFDB.TooltipUtils.create(badge, role, {position: "top", note: note, backgroundColor: color || ""}));
+						// 		avatar.appendChild(badge);
+						// 	}
+						// }
 				};
 					Internal.processAccount = function (e) {
 						Internal._processAvatarMount(e.instance.props.currentUser, e.node.querySelector(Fix_BDFDB.dotCN.avatarwrapper), e.node);
